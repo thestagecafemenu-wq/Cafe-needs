@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10100e">
+<title>Cafe Needs | Restaurant & Kitchen Equipment</title>
+<style>
+:root{--bg:#10100e;--panel:#1b1914;--gold:#d8b66e;--cream:#f4e8cd;--muted:#bdb5a6;--line:#403725}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#f8f5ed;font-family:Arial,Helvetica,sans-serif}
+header{position:sticky;top:0;z-index:5;background:#10100eef;border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
+nav{max-width:1160px;margin:auto;padding:15px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{font-size:22px;font-weight:900;letter-spacing:2px;color:var(--cream)}.logo span{color:var(--gold)}nav small{display:block;color:var(--muted);font-size:10px;letter-spacing:2.5px;margin-top:4px}
+button{cursor:pointer;font-weight:700}.gold{background:linear-gradient(135deg,var(--cream),var(--gold));color:#211a0d;border:0;border-radius:9px;padding:12px 17px}
+.hero{max-width:1160px;margin:auto;padding:76px 20px 62px;display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center}
+.kicker{color:var(--gold);letter-spacing:4px;font-size:11px;font-weight:bold}.hero h1{font-size:clamp(40px,6vw,68px);line-height:1.03;margin:16px 0;background:linear-gradient(90deg,#fff,var(--cream),var(--gold));color:transparent;background-clip:text}
+.hero p{color:var(--muted);line-height:1.8;max-width:570px}.hero-art{min-height:300px;border:1px solid var(--line);border-radius:23px;background:radial-gradient(circle at 50% 45%,#5a4928,#282217 55%,#15140f 80%);display:grid;place-items:center;font-size:105px;box-shadow:0 25px 60px #0008}
+.wrap{max-width:1160px;margin:auto;padding:18px 20px}.section-title{text-align:center;font-size:30px;margin:24px 0 8px}.sub{text-align:center;color:var(--muted);margin:0 0 25px}
+.filters{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin:0 0 25px}.filters button{border:1px solid var(--line);background:#1a1813;color:#e9dfca;border-radius:999px;padding:9px 14px}.filters button.active{background:var(--gold);color:#1b160d;border-color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:17px}
+.card{background:linear-gradient(155deg,#242119,#171612);border:1px solid var(--line);border-radius:17px;padding:17px;display:flex;flex-direction:column;min-width:0}
+.pic{height:145px;border-radius:12px;background:radial-gradient(circle,#373023,#211e17);display:grid;place-items:center;font-size:67px;margin-bottom:14px;overflow:hidden}
+.pic img{width:100%;height:100%;object-fit:cover}.tag{font-size:10px;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase}.card h3{margin:7px 0 8px;font-size:18px}.card p{color:var(--muted);font-size:13px;line-height:1.55;min-height:40px;margin:0}
+.price{font-size:16px;font-weight:900;color:var(--cream);margin:14px 0}.card button{margin-top:auto;padding:12px;border-radius:9px;background:linear-gradient(135deg,var(--cream),var(--gold));color:#211a0d;border:0}
+.filters button{font-weight:600}.note{border:1px solid var(--line);background:#211d14;border-radius:13px;padding:15px;color:#d8c9a7;line-height:1.6;margin:28px 0}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:30px 0}.feature,.contact,.admin{border:1px solid var(--line);border-radius:14px;padding:19px;background:var(--panel)}.feature h3{color:var(--gold);margin:0 0 8px}.feature p,.contact p{color:var(--muted);line-height:1.65;margin:0;font-size:14px}
+.contact{margin:28px 0 45px}.contact h2{margin-top:0}
+.admin{margin:32px 0 45px}.admin h2{margin-top:0;color:var(--cream)}.admin-intro{color:var(--muted);font-size:13px;line-height:1.6}
+.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field.full{grid-column:1/-1}
+label{display:block;color:#ddd;margin:10px 0 6px;font-size:13px}input,textarea,select{width:100%;padding:12px;background:#0f0f0d;border:1px solid #494235;color:white;border-radius:8px;font:inherit}
+.admin-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.secondary{background:#302b20;color:#f4e8cd;border:1px solid var(--line);padding:11px 15px;border-radius:9px}.item-admin{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #39352c;color:#ddd;font-size:13px}.item-admin button{margin-left:6px}
+footer{text-align:center;border-top:1px solid var(--line);padding:24px;color:var(--muted);font-size:13px}
+.overlay{display:none;position:fixed;inset:0;background:#000c;z-index:10;align-items:center;justify-content:center;padding:14px}.modal{width:min(540px,100%);max-height:92vh;overflow:auto;background:#191814;border:1px solid var(--gold);border-radius:17px;padding:22px}
+.modalhead{display:flex;justify-content:space-between;align-items:center}.close{font-size:25px;color:white;background:none;border:0}
+.lineitem{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #39352c;padding:12px 0}.qty button{background:#373126;color:white;border:0;border-radius:5px;padding:5px 9px}.total{display:flex;justify-content:space-between;color:var(--cream);font-size:19px;font-weight:bold;margin:18px 0}
+.muted{color:var(--muted);font-size:12px;line-height:1.6}
+@media(max-width:720px){.hero{grid-template-columns:1fr;padding-top:52px}.hero-art{min-height:190px;font-size:78px}.logo{font-size:18px}.formgrid{grid-template-columns:1fr}}
+</style></head>
+<body>
+<header><nav><div class="logo">CAFE <span>NEEDS</span><small>RESTAURANT & COMMERCIAL KITCHEN EQUIPMENT</small></div><button class="gold" onclick="openCart()">🛒 Enquiry Cart (<span id="count">0</span>)</button></nav></header>
+<section class="hero"><div><div class="kicker">EQUIP YOUR PROFESSIONAL KITCHEN</div><h1>Everything Your Restaurant Kitchen Needs.</h1><p>Explore commercial freezers, coolers, pizza ovens, food preparation machines and essential restaurant kitchen equipment — all in one place.</p><a href="#products"><button class="gold">Explore Equipment</button></a></div><div class="hero-art">🍕</div></section>
+<main class="wrap" id="products"><h2 class="section-title">Restaurant Kitchen Equipment</h2><p class="sub">Browse equipment and send an enquiry for the items you need.</p>
+<div class="filters" id="filters"></div><div class="grid" id="productGrid"></div>
+<div class="note"><strong>Price information:</strong> Prices are available on request. Contact Cafe Needs for current prices, sizes, capacity, brand options, delivery and installation details.</div>
+<div class="features"><article class="feature"><h3>❄️ Refrigeration</h3><p>Commercial freezers, upright chillers, display coolers and under-counter refrigerators.</p></article><article class="feature"><h3>🍕 Cooking Equipment</h3><p>Pizza ovens, commercial cookers, fryers and other hot-kitchen equipment.</p></article><article class="feature"><h3>⚙️ Food Preparation</h3><p>Dough mixers, food processors, blenders and stainless-steel preparation equipment.</p></article></div>
+<section class="contact"><h2>Contact Cafe Needs</h2><p>Ask us about product availability, bulk orders, delivery and installation.<br><br><strong>Phone:</strong> Add your number here<br><strong>WhatsApp:</strong> Add your WhatsApp number here<br><strong>Address:</strong> Add your business address here</p></section>
+
+</main><footer>© <span id="year"></span> Cafe Needs · Restaurant & Commercial Kitchen Equipment</footer>
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeCart()"><div class="modal"><div class="modalhead"><h2>Enquiry Cart</h2><button class="close" onclick="closeCart()">×</button></div><div id="items"></div><div class="total"><span>Items selected</span><span id="total">0</span></div><label>Your name</label><input id="customer" placeholder="Enter your name"><label>Phone / WhatsApp</label><input id="phone" placeholder="Enter contact number"><label>Business name (optional)</label><input id="business" placeholder="Restaurant or cafe name"><label>Enquiry notes</label><textarea id="notes" rows="3" placeholder="Required size, capacity, brand or other details"></textarea><p class="muted">This enquiry form is a front-end preview. Connect a WhatsApp number or order system to receive enquiries from customers.</p><button class="gold" style="width:100%;padding:13px" onclick="sendEnquiry()">Prepare Enquiry</button></div></div>
+<script>
+const defaultProducts=[
+{id:1,name:"Commercial Deep Freezer",cat:"Refrigeration",desc:"Chest-style freezer for frozen food storage. Capacity and model options available.",emoji:"🧊",price:"",image:""},
+{id:2,name:"Upright Commercial Freezer",cat:"Refrigeration",desc:"Vertical freezer for professional restaurant kitchens.",emoji:"❄️",price:"",image:""},
+{id:3,name:"Display Chiller / Cooler",cat:"Refrigeration",desc:"Chilled display cabinet for drinks, desserts and chilled products.",emoji:"🥤",price:"",image:""},
+{id:4,name:"Under-Counter Refrigerator",cat:"Refrigeration",desc:"Compact refrigeration for kitchen workstations.",emoji:"🧊",price:"",image:""},
+{id:5,name:"Commercial Pizza Oven",cat:"Pizza & Cooking",desc:"Pizza baking oven for restaurant and takeaway operations.",emoji:"🍕",price:"",image:""},
+{id:6,name:"Pizza Dough Mixer",cat:"Food Preparation",desc:"Dough mixing equipment for pizza and bakery preparation.",emoji:"🥣",price:"",image:""},
+{id:7,name:"Commercial Deep Fryer",cat:"Pizza & Cooking",desc:"Professional fryer for busy restaurant kitchens.",emoji:"🍟",price:"",image:""},
+{id:8,name:"Commercial Gas Cooker",cat:"Pizza & Cooking",desc:"Multi-burner cooking range for commercial food preparation.",emoji:"🔥",price:"",image:""},
+{id:9,name:"Food Processor",cat:"Food Preparation",desc:"Machine for chopping, slicing and food preparation tasks.",emoji:"⚙️",price:"",image:""},
+{id:10,name:"Commercial Blender",cat:"Food Preparation",desc:"Heavy-duty blender for drinks, sauces and kitchen prep.",emoji:"🥤",price:"",image:""},
+{id:11,name:"Stainless Steel Work Table",cat:"Stainless Steel",desc:"Durable preparation table for commercial kitchen workspaces.",emoji:"🧰",price:"",image:""},
+{id:12,name:"Exhaust Hood",cat:"Stainless Steel",desc:"Kitchen ventilation hood options for commercial cooking areas.",emoji:"🌬️",price:"",image:""},
+{id:13,name:"Commercial Ice Machine",cat:"Refrigeration",desc:"Ice-making equipment for cafes, restaurants and bars.",emoji:"🧊",price:"",image:""},
+{id:14,name:"Planetary Mixer",cat:"Food Preparation",desc:"Mixing machine for batters, creams and bakery preparation.",emoji:"🥄",price:"",image:""}
+];
+const STORAGE_KEY="cafeNeedsProductsV1", CART_KEY="cafeNeedsCartV1";
+let products;try{products=JSON.parse(localStorage.getItem(STORAGE_KEY))||defaultProducts}catch(e){products=defaultProducts}
+let cart={};try{cart=JSON.parse(sessionStorage.getItem(CART_KEY))||{}}catch(e){}
+const categories=["All","Refrigeration","Pizza & Cooking","Food Preparation","Stainless Steel","Other Equipment"];
+document.getElementById("year").textContent=new Date().getFullYear();
+function persist(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(products))}catch(e){alert("Storage is full. Please use a smaller product photo.");}}
+function drawFilters(){document.getElementById("filters").innerHTML=categories.map((c,i)=>`<button class="${i===0?'active':''}" onclick="filterProducts('${c}',this)">${c}</button>`).join("")}
+function draw(list=products){document.getElementById("productGrid").innerHTML=list.map(p=>`<article class="card"><div class="pic">${p.image?`<img src="${p.image}" alt="">`:p.emoji||"🧰"}</div><div class="tag">${p.cat}</div><h3>${esc(p.name)}</h3><p>${esc(p.desc||"")}</p><div class="price">${p.price?money(Number(p.price)):"Price on request"}</div><button onclick="add(${p.id})">Add to Enquiry Cart</button></article>`).join("")||'<p class="muted">No products in this category yet.</p>'}
+function esc(s){return String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function filterProducts(cat,btn){document.querySelectorAll(".filters button").forEach(b=>b.classList.remove("active"));btn.classList.add("active");draw(cat==="All"?products:products.filter(p=>p.cat===cat))}
+function money(n){return "Rs. "+n.toLocaleString("en-LK")}
+function add(id){cart[id]=(cart[id]||0)+1;updateCount();openCart()}
+function updateCount(){document.getElementById("count").textContent=Object.values(cart).reduce((a,b)=>a+b,0);try{sessionStorage.setItem(CART_KEY,JSON.stringify(cart))}catch(e){}}
+function openCart(){renderCart();document.getElementById("overlay").style.display="flex"}
+function closeCart(){document.getElementById("overlay").style.display="none"}
+function change(id,d){cart[id]=(cart[id]||0)+d;if(cart[id]<=0)delete cart[id];updateCount();renderCart()}
+function renderCart(){let chosen=products.filter(p=>cart[p.id]);document.getElementById("items").innerHTML=chosen.length?chosen.map(p=>`<div class="lineitem"><div><b>${esc(p.name)}</b><div class="muted">${esc(p.cat)}</div></div><div class="qty"><button onclick="change(${p.id},-1)">−</button> ${cart[p.id]} <button onclick="change(${p.id},1)">+</button></div></div>`).join(""):'<p class="muted">Your enquiry cart is empty.</p>';document.getElementById("total").textContent=Object.values(cart).reduce((a,b)=>a+b,0)}
+function sendEnquiry(){if(!Object.keys(cart).length){alert("Add at least one item to your enquiry cart.");return}let chosen=products.filter(p=>cart[p.id]).map(p=>p.name+" x "+cart[p.id]).join("\\n");let msg="Cafe Needs enquiry\\nName: "+document.getElementById("customer").value+"\\nPhone: "+document.getElementById("phone").value+"\\nBusiness: "+document.getElementById("business").value+"\\nItems:\\n"+chosen+"\\nNotes: "+document.getElementById("notes").value;alert("Enquiry details prepared. Add your WhatsApp number or connect an order system to receive live enquiries.\\n\\n"+msg)}
+drawFilters();draw();updateCount();
+</script></body></html>
